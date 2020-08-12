@@ -1,0 +1,16 @@
+
+# Geonetwork
+location /geonetwork {
+
+     etag off;
+     expires 0;
+              
+     proxy_pass http://geonetwork4geonetwork-inde:8080/geonetwork ;
+
+
+     proxy_redirect     off;
+     proxy_set_header   Host $host;
+     proxy_set_header   X-Real-IP $remote_addr;
+
+     }
+

@@ -1,0 +1,36 @@
+#
+# maintainer: "Alvaro Barcellos <alvaro.barcellos@cprm.gov.br>"
+#
+
+version: "2.2"
+
+networks:
+    default:
+    internal_hosts:
+        external: true
+
+services:
+    nginx_proxy:
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        image: nginx:1.18
+        container_name: nginx4proxy
+        restart: unless-stopped
+        stdin_open: true
+        # tty: true
+        networks:
+            - internal_hosts
+        #hostname: proxy
+        ports:
+            - 8080:80
+            - 8443:443
+        volumes:
+            - nginx_proxy_conf:/etc/nginx
+            - nginx_proxy_data:/var/lib/nginx
+volumes:
+    nginx_proxy_conf:
+        name: nginx_proxy_conf
+    nginx_proxy_data:
+        name: nginx_proxy_data
+

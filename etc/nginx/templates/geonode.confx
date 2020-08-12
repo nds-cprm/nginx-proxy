@@ -1,0 +1,15 @@
+
+# Geonode
+location /geonode {
+
+     etag off;
+     expires 0;
+              
+     proxy_pass http://geonode:8080/geonode ;
+
+     proxy_redirect     off;
+     proxy_set_header   Host $host;
+     proxy_set_header   X-Real-IP $remote_addr;
+
+     }
+
